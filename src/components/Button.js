@@ -1,4 +1,6 @@
 import React from 'react';
+import InputField from './InputField';
+import TextField from './TextField';
 
 class Button extends React.Component{
   render(){
@@ -9,9 +11,12 @@ class Button extends React.Component{
     )
   }
   writeText(){
-    const INPUTFIELD= document.querySelector('.input-field');
-    document.querySelector('.text-field').textContent = INPUTFIELD.value;
-    INPUTFIELD.value = '';
+    TextField.setState({
+      text: TextField.state.text + InputField.state.inputText
+    });
+    InputField.setState({
+      inputText: ''
+    });
   }
 }
 
