@@ -10,9 +10,9 @@ class App extends React.Component {
     return(
       <div className="app">
         <Timer />
-        <InputField inputText="" />
+        <InputField />
         <Button />
-        <TextField text="" />
+        <TextField />
       </div>
     )
   }

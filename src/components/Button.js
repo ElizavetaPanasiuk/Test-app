@@ -12,7 +12,7 @@ class Button extends React.Component{
   }
   writeText(){
     TextField.setState({
-      text: TextField.state.text + InputField.state.inputText
+      text: `${TextField.state.text} ${InputField.state.inputText}`
     });
     InputField.setState({
       inputText: ''
