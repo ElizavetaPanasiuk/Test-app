@@ -18,8 +18,13 @@
   margin: 20px auto;
   width: 50%;
 }
-.button{
+.buttons{
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.button{
+  width: 30%;
   margin: 20px 0;
 }
 .timer{

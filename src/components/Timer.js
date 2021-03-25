@@ -10,28 +10,37 @@ class Timer extends React.Component{
   }
 
   componentDidMount(){
+    console.log('componentDidMount');
     this.seconsTimerID = setInterval(() => this.tick('seconds'), 1000);
     this.minutesTimerID = setInterval(() => this.tick('minutes'), 60000);
   }
 
   componentWillUnmount(){
+    console.log('compoenntWillUnmount');
     clearInterval(this.secondsTimerID);
     clearInterval(this.minutesTimerID);
   }
 
-  componentWillReceiveProps(){
-
+  UNSAFE_componentWillReceiveProps(){
+    console.log('componentWillReceiveProps');
   }
   
-  shouldComponentUpdate(){
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('shouldComponentUpdate');
+    console.log(nextState);
+    console.log(nextProps);
     return this.state.seconds >= 0;
   }
 
-  componentWillUpdate(){
+  UNSAFE_componentWillUpdate(prevProps, prevState){
+    console.log('componentWillUpdate');
     console.log('preparing for update...');
+
   }
 
   componentDidUpdate(){
+    console.log('componentDidUpdate');
+    console.log('componentDidUpdate');
     console.log(`updated - ${this.state.minutes} : ${this.state.seconds}`);
   }
   
