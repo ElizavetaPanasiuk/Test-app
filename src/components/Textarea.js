@@ -26,8 +26,10 @@ class Textarea extends React.Component{
   }
 
   UNSAFE_componentWillReceiveProps(nextProps){
+    console.log('componentWillReceiveProps');
     console.log(nextProps);
     console.log(this.props);
+    console.log('-'.repeat(30));
   }
   
   shouldComponentUpdate(nextProps, nextState){
@@ -43,7 +45,7 @@ class Textarea extends React.Component{
   }
 
   UNSAFE_componentWillUpdate(prevProps, prevState){
-    console.log('omponentWillUpdate');
+    console.log('componentWillUpdate');
     console.log('previous');
     console.log(prevProps);
     console.log(prevState);
@@ -54,7 +56,7 @@ class Textarea extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState, snapshot){
-    console.log('componentDidUpdat');
+    console.log('componentDidUpdate');
     console.log('previous');
     console.log(prevProps);
     console.log(prevState);
