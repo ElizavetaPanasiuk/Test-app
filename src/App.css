@@ -1,0 +1,39 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-size: 26px;
+}
+.input-field{
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid red;
+}
+.text-field{
+  width: 100%;
+  min-height: 200px;
+  border: 1px solid green;
+}
+.app{
+  margin: 20px auto;
+  width: 50%;
+}
+.button{
+  width: 100%;
+  margin: 20px 0;
+}
+.timer{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  border: 1px solid blue;
+  margin: 20px 0;
+}
+.timer div{
+  margin: 0 20px;
+}
+.clock{
+  display: flex;
+  justify-content: center;
+}
