@@ -6,7 +6,7 @@ class Textarea extends React.Component{
   render(){
     return(
       <div>
-        <input type="text" onChange={(e) => {this.setState({inputText: e.target.value}); console.log(this.state)}} className="input-field"/>
+        <input type="text" value={this.props.inputText} onChange={(e) => e.target.value} className="input-field"/>
         <div className="buttons">
           <Button clickHandler={this.props.writeText} name="Write text"/>
           <Button clickHandler={this.props.clearOutput} name="Clear ouput" />
