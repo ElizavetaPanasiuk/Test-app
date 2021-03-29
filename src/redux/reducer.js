@@ -13,12 +13,10 @@ export default function reducer(state = initialState, action){
     case('CLEAR_OUTPUT'):
       return{
         outputText: '',
-        inputText: state.inputText,
       }
     case('CLEAR_INPUT'):
       return{
         inputText: '',
-        outputText: state.outputText,
       }
     default: 
       return state
