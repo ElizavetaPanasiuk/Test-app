@@ -1,20 +1,46 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef, useCallback, useMemo} from 'react';
 import Button from './Button';
 
 function Textarea(){
   const [outputText, setOutputText] = useState('');
   const [inputText, setInputText] = useState('');
-  const [message] = useState('ouput has changed');
+  const updateMessage = 'ouput has changed';
+  const clearMessage = 'output has cleared';
   const ref = useRef('');
 
-  const showIfOutputChanged = useCallback(
+  const showOutputChanged = useCallback(
     () => {
-      greeting(message);
+      printMessage(updateMessage);
     },
     [outputText]
   );
+/* 
+  const showOutputClear = useMemo(
+    () => {
+      printMessage(clearMessage);
+    },
+    [outputText]
+  ); */
 
-  useEffect(() => showIfOutputChanged(), [showIfOutputChanged]);
+  useEffect(() => showOutputChanged(), [showOutputChanged]);
+  useEffect(() => {
+    console.log('componentDidMount');
+    return () => {
+      console.log('componentWillUnmount')
+    }
+  }, [])
+  useEffect(() => {
+    console.log('componentWillUpdate');
+
+    if(outputText.length > 3){
+      console.log('componentShouldUpdate = true')
+      test1();
+      test2();
+      test3();
+    } else{
+      console.log('componentShouldUpdate = false')
+    }
+  }, [outputText])
 
 
   function handleClick(){
@@ -33,12 +59,22 @@ function Textarea(){
     ref.current.focus(); 
   }
 
+  const test1 = () => {
+    console.log('test1: ',  outputText) // пересоздается всегда, при каждом render
+  }
+  const test2 = useCallback(() => {
+    console.log('test2: ', outputText)
+  }, []); // 1 раз, зависимостей нет
+  const test3 = useCallback(() =>{
+    console.log('test3: ',  outputText)
+  }, [outputText]); // при изменении зависимостей (outputText)
+
   function clearInput(){
     setInputText('');
     ref.current.focus(); 
   }
 
-  function greeting(text){
+  function printMessage(text){
     console.log(text);
   }
 
