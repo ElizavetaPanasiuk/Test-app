@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Button from './Button';
 import {useDispatch, useSelector} from 'react-redux';
 import * as Actions from './../redux/action';
@@ -25,10 +25,12 @@ function Textarea(){
   const handleClearInput = () => {
     dispatch(Actions.clearInput());
   }
+  const ref = useRef();
+  useEffect(() => ref.current.focus(), [output]);
 
   return(
     <div>
-      <input type="text" value={input} onChange={handleInputChange}  className="input-field"/>
+      <input type="text" value={input} onChange={handleInputChange}  ref={ref} className="input-field"/>
       <div className="buttons">
         <Button clickHandler={handleWriteText} name="Write text"/>
         <Button clickHandler={handleClearOutput} name="Clear ouput" />
