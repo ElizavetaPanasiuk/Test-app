@@ -7,23 +7,24 @@ export default function reducer(state = initialState, action){
   switch(action.type){
     case('WRITE_TEXT'):
       return{
+        ...state,
         output: `${state.output} ${state.input}`,
         input: '',
       }
     case('CLEAR_OUTPUT'):
       return{
+        ...state,
         output: '',
-        input: state.input,
       }
     case('CLEAR_INPUT'):
       return{
+        ...state,
         input: '',
-        output: state.output,
       }
     case('INPUT_TEXT'):
       return{
-        input: action.value,
-        output: state.output,
+        ...state,
+        input: action.payload,
       }
     default: 
       return state

@@ -1,38 +1,45 @@
 import React from 'react';
 import Button from './Button';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import * as Actions from './../redux/action';
 
-class Textarea extends React.Component{
 
-  render(){
-    return(
-      <div>
-        <input type="text" value={this.props.input} onChange={(event) => this.props.inputText(event.target.value)}  className="input-field"/>
-        <div className="buttons">
-          <Button clickHandler={this.props.writeText} name="Write text"/>
-          <Button clickHandler={this.props.clearOutput} name="Clear ouput" />
-          <Button clickHandler={this.props.clearInput} name="Clear input" />
-        </div>
-        <div className="text-field">{this.props.output}</div>
+function Textarea(){
+  const dispatch = useDispatch();
+  const input = useSelector(state => state.input);
+  const output = useSelector(state => state.output);
+
+  const handleInputChange = ({target}) => {
+    dispatch(Actions.inputText(target.value))
+  }
+
+  const handleWriteText = () => {
+    dispatch(Actions.writeText());
+  }
+
+  const handleClearOutput = () => {
+    dispatch(Actions.clearOutput());
+  }
+
+  const handleClearInput = () => {
+    dispatch(Actions.clearInput());
+  }
+
+  return(
+    <div>
+      <input type="text" value={input} onChange={handleInputChange}  className="input-field"/>
+      <div className="buttons">
+        <Button clickHandler={handleWriteText} name="Write text"/>
+        <Button clickHandler={handleClearOutput} name="Clear ouput" />
+        <Button clickHandler={handleClearInput} name="Clear input" />
       </div>
-    )
-  }
+      <div className="text-field">{output}</div>
+    </div>
+  )
 }
 
-function mapStateToProps(state){
-  return {
-    input: state.input,
-    output: state.output,
-  }
-} 
 
-function mapDispatchToProps(dispatch){
-  return{
-    writeText: () => dispatch({type: 'WRITE_TEXT'}),
-    clearOutput: () => dispatch({type: 'CLEAR_OUTPUT'}),
-    clearInput: () => dispatch({type: 'CLEAR_INPUT'}),
-    inputText: (value) => dispatch({type: 'INPUT_TEXT', value: value}),
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Textarea);
+
+
+export default Textarea;
