@@ -6,11 +6,12 @@ import * as Actions from './../redux/action';
 
 function Textarea(){
   const dispatch = useDispatch();
+
   const input = useSelector(state => state.input);
   const output = useSelector(state => state.output);
 
   const handleInputChange = ({target}) => {
-    dispatch(Actions.inputText(target.value))
+    dispatch(Actions.inputText(target.value));
   }
 
   const handleWriteText = () => {
@@ -37,9 +38,5 @@ function Textarea(){
     </div>
   )
 }
-
-
-
-
 
 export default Textarea;
